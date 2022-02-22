@@ -57,13 +57,14 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       onGenerateRoute: Flurorouter.router.generator,
       navigatorKey: NavigationService.navigatorKey,
-      scaffoldMessengerKey: NotificationsService.messengerKey,
+      scaffoldMessengerKey: NotificationsService.messengerKey, // mostrar notificaciones 
       builder: ( _ , child ){
         
         final authProvider = Provider.of<AuthProvider>(context);
 
-        if ( authProvider.authStatus == AuthStatus.checking )
+        if ( authProvider.authStatus == AuthStatus.checking ) {
           return SplashLayout();
+        }
 
         if( authProvider.authStatus == AuthStatus.authenticated ) {
           return DashboardLayout( child: child! );
@@ -74,7 +75,7 @@ class MyApp extends StatelessWidget {
 
       },
       theme: ThemeData.light().copyWith(
-        scrollbarTheme: ScrollbarThemeData().copyWith(
+        scrollbarTheme: const ScrollbarThemeData().copyWith(
           thumbColor: MaterialStateProperty.all(
             Colors.grey.withOpacity(0.5)
           )

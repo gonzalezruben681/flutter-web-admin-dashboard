@@ -7,6 +7,8 @@ import 'package:admin_dashboard/ui/cards/white_card.dart';
 import 'package:admin_dashboard/providers/auth_provider.dart';
 
 class DashboardView extends StatelessWidget {
+  const DashboardView({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -15,11 +17,11 @@ class DashboardView extends StatelessWidget {
 
     return Container(
       child: ListView(
-        physics: ClampingScrollPhysics(),
+        physics: const ClampingScrollPhysics(),
         children: [
           Text('Dashboard View', style: CustomLabels.h1 ),
 
-          SizedBox( height: 10 ),
+          const SizedBox( height: 10 ),
 
           WhiteCard(
             title: user.nombre,
