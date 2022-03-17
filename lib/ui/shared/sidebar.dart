@@ -1,4 +1,5 @@
 import 'package:admin_dashboard/providers/auth_provider.dart';
+// import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,7 +17,8 @@ class Sidebar extends StatelessWidget {
   const Sidebar({Key? key}) : super(key: key);
 
   void navigateTo(String routeName) {
-    NavigationService.navigateTo(routeName);
+    // NavigationService.navigateTo(routeName); // navegación por si quiere recuperar el widget de la página
+    NavigationService.replaceTo(routeName); // este es para dashboard
     SideMenuProvider.closeMenu();
   }
 
@@ -37,7 +39,9 @@ class Sidebar extends StatelessWidget {
           MenuItem(
             text: 'Dashboard',
             icon: Icons.compass_calibration_outlined,
-            onPressed: () => navigateTo(Flurorouter.dashboardRoute),
+            onPressed: () {
+              navigateTo(Flurorouter.dashboardRoute);
+            },
             isActive:
                 sideMenuProvider.currentPage == Flurorouter.dashboardRoute,
           ),
@@ -65,9 +69,11 @@ class Sidebar extends StatelessWidget {
               icon: Icons.attach_money_outlined,
               onPressed: () {}),
           MenuItem(
-              text: 'Customers',
-              icon: Icons.people_alt_outlined,
-              onPressed: () {}),
+            text: 'Users',
+            icon: Icons.people_alt_outlined,
+            onPressed: () => navigateTo(Flurorouter.usersRoute),
+            isActive: sideMenuProvider.currentPage == Flurorouter.usersRoute,
+          ),
           const SizedBox(height: 30),
           const TextSeparator(text: 'UI Elements'),
           MenuItem(
